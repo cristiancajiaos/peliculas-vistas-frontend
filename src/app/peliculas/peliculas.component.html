@@ -1,1 +1,35 @@
-<p>{{peliculas | json}}</p>
+<div class="table-responsive">
+  <table class="table table-bordered" datatable
+         [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Año</th>
+        <th>Vista el</th>
+        <th>Vista en</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pelicula of peliculas">
+        <td>{{pelicula.title}}</td>
+        <td>{{pelicula.year}}</td>
+        <td>{{pelicula.dateSeen}}</td>
+        <td>{{pelicula.seenOn}}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-primary" ngbTooltip="Ver">
+              <i class="fa-solid fa-eye fa-fw"></i>
+            </button>
+            <button class="btn btn-secondary" ngbTooltip="Editar">
+              <i class="fa-solid fa-pencil fa-fw"></i>
+            </button>
+            <button class="btn btn-danger" ngbTooltip="Eliminar">
+              <i class="fa-solid fa-times fa-fw"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

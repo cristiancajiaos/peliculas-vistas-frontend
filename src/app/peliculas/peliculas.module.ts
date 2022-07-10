@@ -1,3 +1,4 @@
+import { DataTablesModule } from 'angular-datatables';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +12,8 @@ import { PeliculasComponent } from './peliculas.component';
   ],
   imports: [
     CommonModule,
-    PeliculasRoutingModule
+    PeliculasRoutingModule,
+    DataTablesModule
   ]
 })
 export class PeliculasModule { }
