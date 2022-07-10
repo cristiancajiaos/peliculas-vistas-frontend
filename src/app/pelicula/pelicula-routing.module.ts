@@ -3,7 +3,6 @@ import { DetallePeliculaComponent } from './detalle-pelicula/detalle-pelicula.co
 import { AgregarPeliculaComponent } from './agregar-pelicula/agregar-pelicula.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PeliculaComponent } from './pelicula.component';
 
 const routes: Routes = [
   { path: '', component: HomePeliculaComponent},
