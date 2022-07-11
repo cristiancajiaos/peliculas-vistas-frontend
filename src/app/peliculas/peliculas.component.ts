@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { PeliculaService } from './../services/pelicula.service';
 import { Subscription, Subject } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -18,7 +19,8 @@ export class PeliculasComponent implements OnInit, OnDestroy {
   peliculaSubscription: Subscription;
 
   constructor(
-    private pelicula: PeliculaService
+    private pelicula: PeliculaService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,5 +43,9 @@ export class PeliculasComponent implements OnInit, OnDestroy {
     if (this.dtTrigger) {
       this.dtTrigger.unsubscribe();
     }
+  }
+
+  detailMovie(id: number): void {
+    this.router.navigate(['/pelicula', id.toString()]);
   }
 }

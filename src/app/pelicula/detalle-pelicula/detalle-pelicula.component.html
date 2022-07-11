@@ -1,4 +1,38 @@
-<p>detalle-pelicula works!</p>
+
+<div *ngIf="!loading; else nowLoading">
+  <h3 class="mb-3"><i class="fa-solid fa-film fa-fw"></i> ID {{peliculaEnc.id}}: {{peliculaEnc.title}}</h3>
+
+  <div class="row">
+    <div class="col-12 col-lg-6 mb-3">
+      <strong>Título:</strong><br />
+      {{peliculaEnc.title}}
+    </div>
+    <div class="col-12 col-lg-6 mb-3">
+      <strong>Título original:</strong><br/>
+      {{peliculaEnc.originalTitle}}
+    </div>
+    <div class="col-12 col-lg-6 mb-3">
+      <strong>Año:</strong><br />
+      {{peliculaEnc.originalTitle}}
+    </div>
+    <div class="col-12 col-lg-6 mb-3">
+      <strong>Vista el:</strong><br />
+      {{peliculaEnc.dateSeen | date:'dd/MM/yyyy'}}
+    </div>
+    <div class="col-12 col-lg-6 mb-3">
+      <strong>Idioma:</strong><br />
+      {{peliculaEnc.language}}
+    </div>
+    <div class="col-12 col-lg-6 mb-3">
+      <strong>Vista en:</strong><br />
+      {{peliculaEnc.seenOn}}
+    </div>
+  </div>
+</div>
+
+<ng-template #nowLoading>
+  <i class="fa-solid fa-spinner fa-spin fa-fw fa-5x"></i>
+</ng-template>
 
 <hr/>
 

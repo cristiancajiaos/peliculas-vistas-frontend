@@ -17,4 +17,8 @@ export class PeliculaService {
   obtenerPeliculas(): Observable<Pelicula[]> {
     return this.http.get<Pelicula[]>(`${this.baseUrl}/peliculas`);
   }
+
+  obtenerPelicula(id: string): Observable<Pelicula> {
+    return this.http.get<Pelicula>(`${this.baseUrl}/peliculas/${id}`);
+  }
 }
