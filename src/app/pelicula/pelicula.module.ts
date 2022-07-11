@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,7 +7,6 @@ import { PeliculaComponent } from './pelicula.component';
 import { DetallePeliculaComponent } from './detalle-pelicula/detalle-pelicula.component';
 import { AgregarPeliculaComponent } from './agregar-pelicula/agregar-pelicula.component';
 import { HomePeliculaComponent } from './home-pelicula/home-pelicula.component';
-
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { HomePeliculaComponent } from './home-pelicula/home-pelicula.component';
   ],
   imports: [
     CommonModule,
-    PeliculaRoutingModule
+    PeliculaRoutingModule,
+    SharedModule
   ]
 })
 export class PeliculaModule { }

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { PeliculasRoutingModule } from './peliculas-routing.module';
 import { PeliculasComponent } from './peliculas.component';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { PeliculasComponent } from './peliculas.component';
   imports: [
     CommonModule,
     PeliculasRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    SharedModule
   ]
 })
 export class PeliculasModule { }
