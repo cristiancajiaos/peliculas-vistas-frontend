@@ -3,6 +3,7 @@ import { PeliculaService } from './../services/pelicula.service';
 import { Subscription, Subject } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Pelicula } from '../models/pelicula';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-peliculas',
@@ -22,7 +23,8 @@ export class PeliculasComponent implements OnInit, OnDestroy {
 
   constructor(
     private pelicula: PeliculaService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -39,8 +41,6 @@ export class PeliculasComponent implements OnInit, OnDestroy {
     this.peliculaSubscription = this.pelicula.obtenerPeliculas().subscribe(peliculas => {
       this.peliculas = peliculas;
       this.dtTrigger.next(peliculas);
-    }, error => {
-    }, () => {
       this.loading = false;
     });
   }
