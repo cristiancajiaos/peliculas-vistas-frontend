@@ -8,17 +8,15 @@ import { Pelicula } from '../models/pelicula';
 })
 export class PeliculaService {
 
-  private baseUrl = 'http://localhost:8085/api/v1';
-
   constructor(
     private http: HttpClient
   ) { }
 
   obtenerPeliculas(): Observable<Pelicula[]> {
-    return this.http.get<Pelicula[]>(`${this.baseUrl}/peliculas`);
+    return this.http.get<Pelicula[]>(`/peliculas`);
   }
 
   obtenerPelicula(id: string): Observable<Pelicula> {
-    return this.http.get<Pelicula>(`${this.baseUrl}/peliculas/${id}`);
+    return this.http.get<Pelicula>(`/peliculas/${id}`);
   }
 }

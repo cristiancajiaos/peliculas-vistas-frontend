@@ -1,3 +1,4 @@
+import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { ErrorHandleInterceptor } from './interceptors/error-handle.interceptor';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -28,6 +29,10 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot()
   ],
   providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: BaseUrlInterceptor,
+    multi: true
+  },{
     provide: HTTP_INTERCEPTORS,
     useClass: ErrorHandleInterceptor,
     multi: true
