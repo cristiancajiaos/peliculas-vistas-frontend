@@ -11,12 +11,14 @@ import { Pelicula } from '../models/pelicula';
 })
 export class PeliculasComponent implements OnInit, OnDestroy {
 
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject<any>();
+  public loading = false;
 
-  peliculas: Pelicula[] = [];
+  public dtOptions: DataTables.Settings = {};
+  public dtTrigger: Subject<any> = new Subject<any>();
 
-  peliculaSubscription: Subscription;
+  public peliculas: Pelicula[] = [];
+
+  private peliculaSubscription: Subscription;
 
   constructor(
     private pelicula: PeliculaService,
@@ -29,9 +31,17 @@ export class PeliculasComponent implements OnInit, OnDestroy {
       pageLength: 10
     };
 
+    this.loading = true;
+    this.obtenerPeliculas();
+  }
+
+  private obtenerPeliculas(): void {
     this.peliculaSubscription = this.pelicula.obtenerPeliculas().subscribe(peliculas => {
       this.peliculas = peliculas;
       this.dtTrigger.next(peliculas);
+    }, error => {
+    }, () => {
+      this.loading = false;
     });
   }
 
