@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -23,7 +24,8 @@ import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    RouterModule
   ]
 })
 export class PeliculaModule { }

@@ -3,7 +3,7 @@ export class Pelicula {
   title: string;
   originalTitle: string;
   year: number;
-  dateSeen: Date;
+  dateSeen: string;
   language: string;
   seenOn: string
 }

@@ -1,3 +1,6 @@
+import { PeliculaService } from './../../services/pelicula.service';
+import { Pelicula } from './../../models/pelicula';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +17,9 @@ export class AgregarPeliculaComponent implements OnInit {
   public modelDate: NgbDate;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
+    private peliculaService: PeliculaService
   ) { }
 
   ngOnInit(): void {
@@ -22,8 +27,8 @@ export class AgregarPeliculaComponent implements OnInit {
 
     this.modelDate = new NgbDate(
       this.currentDate.getFullYear(),
-      this.currentDate.getMonth(),
-      this.currentDate.getDay()
+      this.currentDate.getMonth() + 1,
+      this.currentDate.getDate()
     );
 
     this.newSeenMovieForm = this.fb.group({
@@ -68,7 +73,30 @@ export class AgregarPeliculaComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    console.log(this.newSeenMovieForm.value);
+    const formValue = this.newSeenMovieForm.value;
+
+    let pelicula = new Pelicula();
+    pelicula.title = formValue['title'];
+    pelicula.originalTitle = formValue['originalTitle'];
+    pelicula.year = parseInt(formValue['year'], 10);
+    pelicula.dateSeen = this.formatDate(formValue['dateSeen']);
+    pelicula.language = formValue['movieLanguage'];
+    pelicula.seenOn = formValue['seenOn'];
+
+    this.peliculaService.guardarPelicula(pelicula).subscribe((dato: any) => {
+      this.irAListaPeliculas();
+    });
   }
 
+  public irAListaPeliculas(): void {
+    this.router.navigate(['/peliculas']);
+  }
+
+  public formatDate(date: NgbDate): string {
+    return `${date.year}-${this.twoDigits(date.month)}-${this.twoDigits(date.day)}`;
+  }
+
+  public twoDigits(num: number): string {
+    return ((num >= 10) ? num.toString() : '0'.concat(num.toString()));
+  }
 }

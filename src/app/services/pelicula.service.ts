@@ -19,4 +19,8 @@ export class PeliculaService {
   obtenerPelicula(id: string): Observable<Pelicula> {
     return this.http.get<Pelicula>(`/peliculas/${id}`);
   }
+
+  guardarPelicula(pelicula: Pelicula): Observable<Object> {
+    return this.http.post(`/peliculas`, pelicula);
+  }
 }
