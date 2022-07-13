@@ -1,48 +1,94 @@
 <h3 class="mb-3"><i class="fa-solid fa-plus fa-fw"></i> Agregar película</h3>
 
-<form>
+<form [formGroup]="newSeenMovieForm" (ngSubmit)="onSubmit()">
   <div class="row">
     <div class="col-12 col-lg-6">
       <div class="form-group mb-3">
-        <label>Título</label>
-        <input type="text" class="form-control" />
+        <label for="title">Título</label>
+        <input type="text" class="form-control"
+               id="title" name="title" formControlName="title"
+               [ngClass]="{'border-danger':isInvalidField('title')}" />
+        <small *ngIf="showRequiredText('title')" class="text-danger">
+          Se requiere este campo
+        </small>
       </div>
       <label>
-        <input type="checkbox"> El título y el título original son iguales
+        <input type="checkbox" (change)="setSingleOrDoubleTitle($event)" formControlName="doubleTitle">
+        Replicar el título en el campo de título original
       </label>
     </div>
     <div class="col-12 col-lg-6">
       <div class="form-group mb-3">
-        <label>Título original</label>
-        <input type="text" class="form-control" />
+        <label for="originalTitle">Título original</label>
+        <input type="text" class="form-control"
+                id="originalTitle" name="originalTitle"
+                [readonly]="isDoubleTitle()" formControlName="originalTitle"
+                [ngClass]="{'border-danger':isInvalidField('originalTitle')}" />
+        <small *ngIf="showRequiredText('originalTitle')" class="text-danger">
+          Se requiere este campo
+        </small>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-12 col-lg-6">
       <div class="form-group mb-3">
-        <label>Año</label>
-        <input type="text" class="form-control" />
+        <label for="year">Año</label>
+        <input type="text" class="form-control"
+          id="year" name="year" formControlName="year"
+          [ngClass]="{'border-danger':isInvalidField('year')}" />
+        <small *ngIf="showRequiredText('year')" class="text-danger">
+          Se requiere este campo
+        </small>
       </div>
     </div>
     <div class="col-12 col-lg-6">
       <div class="form-group mb-3">
-        <label>Fecha en que se vio</label>
-        <input type="text" class="form-control" />
+        <label for="dateSeen">Fecha en que se vió</label>
+        <div class="input-group">
+          <input type="text" readonly class="form-control"
+                 id="dateSeen" name="dateSeen" formControlName="dateSeen"
+                ngbDatepicker #d="ngbDatepicker"
+                [ngClass]="{'border-danger':isInvalidField('dateSeen')}"/>
+          <button type="button" class="btn btn-outline-secondary" (click)="d.toggle()">
+            <i class="fa-solid fa-calendar fa-fw"></i>
+          </button>
+        </div>
+        <small *ngIf="showRequiredText('dateSeen')" class="text-danger">
+          Se requiere este campo
+        </small>
       </div>
     </div>
     <div class="col-12 col-lg-6">
       <div class="form-group mb-3">
-        <label>Idioma <small>(en paréntesis agrega indicaciones adicionales)</small></label>
-        <input type="text" class="form-control" />
+        <label for="movieLanguage">Idioma <small>(en paréntesis agrega indicaciones adicionales)</small></label>
+        <input type="text" class="form-control"
+               id="movieLanguage" name="movieLanguage" formControlName="movieLanguage"
+               [ngClass]="{'border-danger':isInvalidField('movieLanguage')}"/>
+        <small *ngIf="showRequiredText('movieLanguage')" class="text-danger">
+          Se requiere este campo
+        </small>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="form-group mb-3">
+        <label for="seenOn">Vista en</label>
+        <input type="text" class="form-control"
+               id="seenOn" name="seenOn" formControlName="seenOn"
+               [ngClass]="{'border-danger':isInvalidField('seenOn')}"/>
+        <small *ngIf="showRequiredText('seenOn')" class="text-danger">
+          Se requiere este campo
+        </small>
       </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-success">
+  <button type="submit" class="btn btn-success me-2" [disabled]="newSeenMovieForm.invalid">
     <i class="fa-solid fa-plus fa-fw"></i> Agregar película
   </button>
+  <button type="button" class="btn btn-danger" (click)="cleanForm()">
+    <i class="fa-solid fa-broom fa-fw"></i> Limpiar formulario
+  </button>
 </form>
-
 
 <hr/>
 
